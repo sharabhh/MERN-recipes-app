@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import {useCookies} from "react-cookie"
 import {useNavigate} from "react-router-dom"
 
+const baseUrl = process.env.REACT_APP_API
 export default function Auth() {
   return (
     <div className="auth">
@@ -23,7 +24,7 @@ function Login() {
   async function onSubmit(event){
 event.preventDefault();
 try{
-const response = await axios.post('http://localhost:3001/auth/login',{username: username, password: password});
+const response = await axios.post(`${baseUrl}/login`,{username: username, password: password});
 
 console.log(response)
 
@@ -55,7 +56,7 @@ async function onSubmit(event){
 event.preventDefault();
 try{
 
-    axios.post('http://localhost:3001/auth/register',{username, password});
+    axios.post(`${baseUrl}/register`,{username, password});
     alert('Registration Completed!')
 
 } catch(err){
